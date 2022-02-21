@@ -3,11 +3,11 @@
 class ConfiguracionSistema
 {
     private $host = 'localhost';
-    private $user = 'super';
-    private $pass = 'còmprame';
-    private $apli = 'super';
+    private $user = 'teniente';
+    private $pass = 'morcilla';
+    private $apli = 'interestelar';
 
-    private $home = '/opt/lampp/htdocs/supermercado/';
+    private $home = '/opt/lampp/htdocs/interestelar/';
 
     public function getHost()
     {
