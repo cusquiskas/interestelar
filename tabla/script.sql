@@ -11,7 +11,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `interestelar`.* TO 'teniente'@'localhos
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-02-2022 a las 23:55:28
+-- Tiempo de generación: 23-02-2022 a las 00:42:17
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -32,6 +32,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ALMACEN`
+--
+
+CREATE TABLE `ALMACEN` (
+  `ALM_SECTOR` int(11) NOT NULL COMMENT 'ID DEL SECTOR',
+  `ALM_RECURSO` int(11) NOT NULL COMMENT 'ID DEL RECURSO',
+  `ALM_CANTIDAD` int(11) NOT NULL COMMENT 'CANTIDAD DEL RECURSO ALMACENADA ALMACENADA'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `CATEGORIA`
 --
 
@@ -39,6 +51,17 @@ CREATE TABLE `CATEGORIA` (
   `CTG_CATEGORIA` int(11) NOT NULL COMMENT 'ID DE LA CATEGORIA',
   `CTG_NOMBRE` varchar(100) NOT NULL COMMENT 'NOMBRE DE LA CATEGORIA'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='LISTA DE LAS DIFERENTES DISCIPLINAS DEL JUEGO';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `EDF_TAR`
+--
+
+CREATE TABLE `EDF_TAR` (
+  `EDF_EDIFICIO` int(11) NOT NULL,
+  `EDF_TAREA` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -180,6 +203,17 @@ CREATE TABLE `SECTOR` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `TAREA`
+--
+
+CREATE TABLE `TAREA` (
+  `TAR_TAREA` int(11) NOT NULL COMMENT 'ID DE LA TAREA',
+  `TAR_NOMBRE` varchar(100) NOT NULL COMMENT 'NOMBRE DE LA TAREA'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `UNIVERSO`
 --
 
@@ -194,10 +228,23 @@ CREATE TABLE `UNIVERSO` (
 --
 
 --
+-- Indices de la tabla `ALMACEN`
+--
+ALTER TABLE `ALMACEN`
+  ADD PRIMARY KEY (`ALM_SECTOR`,`ALM_RECURSO`);
+
+--
 -- Indices de la tabla `CATEGORIA`
 --
 ALTER TABLE `CATEGORIA`
   ADD PRIMARY KEY (`CTG_CATEGORIA`);
+
+--
+-- Indices de la tabla `EDF_TAR`
+--
+ALTER TABLE `EDF_TAR`
+  ADD PRIMARY KEY (`EDF_EDIFICIO`,`EDF_TAREA`),
+  ADD KEY `EDF_TAREA` (`EDF_TAREA`);
 
 --
 -- Indices de la tabla `EDIFICIO`
@@ -277,6 +324,12 @@ ALTER TABLE `SECTOR`
   ADD KEY `SCT_PLANETA` (`SCT_PLANETA`);
 
 --
+-- Indices de la tabla `TAREA`
+--
+ALTER TABLE `TAREA`
+  ADD PRIMARY KEY (`TAR_TAREA`);
+
+--
 -- Indices de la tabla `UNIVERSO`
 --
 ALTER TABLE `UNIVERSO`
@@ -329,6 +382,12 @@ ALTER TABLE `SECTOR`
   MODIFY `SCT_SECTOR` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID DEL SECTOR';
 
 --
+-- AUTO_INCREMENT de la tabla `TAREA`
+--
+ALTER TABLE `TAREA`
+  MODIFY `TAR_TAREA` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID DE LA TAREA';
+
+--
 -- AUTO_INCREMENT de la tabla `UNIVERSO`
 --
 ALTER TABLE `UNIVERSO`
@@ -337,6 +396,20 @@ ALTER TABLE `UNIVERSO`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `ALMACEN`
+--
+ALTER TABLE `ALMACEN`
+  ADD CONSTRAINT `ALMACEN_ibfk_1` FOREIGN KEY (`ALM_SECTOR`) REFERENCES `SECTOR` (`SCT_SECTOR`),
+  ADD CONSTRAINT `ALMACEN_ibfk_2` FOREIGN KEY (`ALM_RECURSO`) REFERENCES `RECURSO` (`RCS_RECURSO`);
+
+--
+-- Filtros para la tabla `EDF_TAR`
+--
+ALTER TABLE `EDF_TAR`
+  ADD CONSTRAINT `EDF_TAR_ibfk_1` FOREIGN KEY (`EDF_EDIFICIO`) REFERENCES `EDIFICIO` (`EDF_EDIFICIO`),
+  ADD CONSTRAINT `EDF_TAR_ibfk_2` FOREIGN KEY (`EDF_TAREA`) REFERENCES `TAREA` (`TAR_TAREA`);
 
 --
 -- Filtros para la tabla `EDIFICIO`
