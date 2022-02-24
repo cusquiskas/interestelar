@@ -22,7 +22,7 @@
 
     $_POST['JGD_PASSWORD'] = md5($_POST['JGD_PASSWORD']);
 
-    $_POST['JGD_FDESDE'] = $_POST['JGD_FACCESO'] = date('Y-m-d');
+    $_POST['JGD_FDESDE'] = $_POST['JGD_FACCESO'] = date('Y-m-d G:i:s');
 
     $manJugador = ControladorDinamicoTabla::set('JUGADOR');
 
@@ -30,6 +30,18 @@
         $reg = $manJugador->getArray();
         $_SESSION['data']['user']['id'] = $reg[0]['JGD_JUGADOR'];
         $_SESSION['data']['user']['nombre'] = $reg[0]['JGD_NOMBRE'];
+        
+        $to      = 'cusquiskas@gmail.com';
+        $subject = 'Verificación de cuenta de correo';
+        $message = 'Pulsa este enlace para activar el centro de mando';
+        $headers = 'From: cusquiskas@gmail.com'       . "\r\n" .
+                   'Reply-To: cusquiskas@gmail.com' . "\r\n" .
+                   'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
+        echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Registro realizado correctamente']]);
+        
     } else {
         $reg = $manJugador->getListaErrores();
         echo json_encode(['success' => false, 'root' => ['tipo' => 'Respuesta', 'Detalle' => $reg]]);
