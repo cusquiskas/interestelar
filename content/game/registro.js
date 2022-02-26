@@ -11,10 +11,11 @@ var registro = class {
     };
 
     registro (s,d,e) {
-        validaErroresCBK(d.root.Detalle||d);
+        
         if (s) {
+            validaErroresCBK(d.root.Detalle);
             sessionStorage.setItem('id', d.root.id);
             Moduls.getBody().load({ url: 'content/game/panelprincipal.html', script: true });
-        }
+        } else validaErroresCBK(d.root||d);
     }
 }

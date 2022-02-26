@@ -14,7 +14,13 @@ var panelprincipal = class {
     };
 
     sesion (s,d,e) {
-        validaErroresCBK(d.root.Detalle||d);
+        if (!s) {
+            validaErroresCBK(d.root||d);
+            sessionStorage.setItem('id','');
+            top.location.reload();
+        } else {
+            sessionStorage.setItem('id',d.root.Detalle.JGD_JUGADOR);
+        }
     }
 
 }

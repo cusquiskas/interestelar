@@ -30,8 +30,8 @@
 
     if ($manJugador->save($_POST) == 0) {
         $reg = $manJugador->getArray();
-        $_SESSION['data']['user']['id'] = $reg[0]['JGD_JUGADOR'];
-        $_SESSION['data']['user']['nombre'] = $reg[0]['JGD_NOMBRE'];
+        $_SESSION['data']['user']['id'] = $reg['JGD_JUGADOR'];
+        $_SESSION['data']['user']['nombre'] = $reg['JGD_NOMBRE'];
         
         /*$to      = 'cusquiskas@gmail.com';
         $subject = 'Verificación de cuenta de correo';
