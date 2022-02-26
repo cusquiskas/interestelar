@@ -5,6 +5,34 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON `interestelar`.* TO 'teniente'@'localhos
 
 
 
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost
+-- Tiempo de generación: 26-02-2022 a las 19:25:41
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 7.4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `interestelar`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ALMACEN`
+--
 
 CREATE TABLE `ALMACEN` (
   `ALM_SECTOR` int(11) NOT NULL COMMENT 'ID DEL SECTOR',
@@ -107,15 +135,9 @@ CREATE TABLE `JUGADOR` (
   `JGD_FDESDE` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'FECHA DE CREACIÓN DE LA CUENTA',
   `JGD_FVALIDA` datetime DEFAULT NULL COMMENT 'FECHA DE VALIDACIÓN DEL CORREO',
   `JGD_FACCESO` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'FECHA DEL ÚLTIMO ACCESO',
-  `JGD_PASSWORD` varchar(50) NOT NULL COMMENT 'CONTRASEÑA MD5 DEL JUGADOR'
+  `JGD_PASSWORD` varchar(50) NOT NULL COMMENT 'CONTRASEÑA MD5 DEL JUGADOR',
+  `JGD_TOKEN` varchar(64) NOT NULL COMMENT 'por si en algún momento se necesita una segunda validación con el jugador'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='LISTA DE JUGADORES REGISTRADOS';
-
---
--- Volcado de datos para la tabla `JUGADOR`
---
-
-INSERT INTO `JUGADOR` (`JGD_JUGADOR`, `JGD_NOMBRE`, `JGD_CORREO`, `JGD_FDESDE`, `JGD_FVALIDA`, `JGD_FACCESO`, `JGD_PASSWORD`) VALUES
-(2, 'cusquiskas', 'cusquiskas@gmail.com', '2022-02-25 00:13:41', NULL, '2022-02-25 00:13:41', '0414461d1a40790ca547e2ab9e500a1e');
 
 -- --------------------------------------------------------
 

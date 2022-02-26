@@ -1,9 +1,13 @@
 var intro = class {
     constructor (mod, obj) {
         console.log('intro.js -> constructor');
-        let modulo = mod;
-        let object = obj;
-        this.addEventos(modulo);
+        if (sessionStorage.getItem('id') !== "") {
+            Moduls.getBody().load({ url: 'content/game/panelprincipal.html', script: true });
+        } else {
+            let modulo = mod;
+            let object = obj;
+            this.addEventos(modulo);
+        }
     };
 
     addEventos () {
