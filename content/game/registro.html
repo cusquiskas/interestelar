@@ -1,4 +1,4 @@
-<div class="logo">
+<div class="">
     <p>
         Se ha iniciado el descenso a la superficie del planeta.
     </p>
@@ -10,13 +10,13 @@
     </p>
     <div class="form">
         <form name="registro" method="post" action="backend/login/registro.php" frc-callback="registro">
-            Nombre:
+            <label for="JGD_NOMBRE">Nombre</label>:
             <input type="text" name="JGD_NOMBRE" maxlength="20" required><br>
-            Email:
+            <label for="JGD_CORREO">Email</label>:
             <input type="text" name="JGD_CORREO" maxlength="200" required><br>
-            Contraseña:
+            <label for="JGD_PASSWORD">Contraseña</label>:
             <input type="password" name="JGD_PASSWORD" maxlength="50" required><br>
-            Repite la Contraseña:
+            <label for="JGD_PASSWORD2">Repite la Contraseña</label>:
             <input type="password" name="JGD_PASSWORD2" maxlength="50" required><br>
             <button type="submit" name="guardar">Guardar Datos</button>
         </form>

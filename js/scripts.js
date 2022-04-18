@@ -46,7 +46,7 @@ function construirModal(modal) {
     let $myModal = $('#myModal');
 
     $myModal.on('hidden.bs.modal', function () {
-        if (Moduls.getModalbody) Moduls.getModalbody().load({ url: '/portalapp/res/blanco.html', script: false });
+        if (Moduls.getModalbody) Moduls.getModalbody().load({ url: '/interestelar/res/blanco.html', script: false });
     });
 
     if (modal.ocultarXCerrar) {
@@ -73,9 +73,7 @@ function construirModal(modal) {
     let $myModalFooter = $('.modal-footer', $myModal).empty();
     if (modal.oktext) {
         if (!(typeof (modal.okfunction) === 'function')) {
-            modal.okfunction = function () {
-                cerrarModalIE($myModal);
-            };
+            modal.okfunction = function () { $myModal.hide() };
         }
         $myModalFooter.append('<button id="okfunction" type="button" class="btn btn-primary">' + modal.oktext + '</button>');
         $("#okfunction").on("click", function () { modal.okfunction(); return false; });

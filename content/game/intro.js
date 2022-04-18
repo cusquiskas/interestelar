@@ -15,7 +15,8 @@ var intro = class {
             console.log('intro.js -> ha pulsado ' + this.value);
             switch (this.value) {
                 case 'si':
-                    Moduls.getBody().load({ url: 'content/game/registro.html', script: true });
+                    Moduls.getModalbody().load({ url: 'content/game/registro.html', script: true });
+                    construirModal({title:"Registro", w:600, h:600, oktext:"Guardar Registro"});
                     break;
                 case 'login':
                     break;
