@@ -16,7 +16,7 @@ var intro = class {
             switch (this.value) {
                 case 'si':
                     Moduls.getModalbody().load({ url: 'content/game/registro.html', script: true });
-                    construirModal({title:"Registro", w:600, h:600, oktext:"Guardar Registro"});
+                    construirModal({title:"Registro", w:600, h:750});
                     break;
                 case 'login':
                     break;

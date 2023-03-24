@@ -50,12 +50,16 @@ function construirModal(modal) {
     });
 
     if (modal.ocultarXCerrar) {
-        $('button.close', $myModal).hide();
+        $('button.btn-close', $myModal).hide();
     } else {
-        $('button.close', $myModal).show();
+        $('button.btn-close', $myModal).show();
         if (typeof (modal.xfunction) === 'function') {
-            $('button.close', $myModal).click(function () {
+            $('button.btn-close', $myModal).click(function () {
                 modal.xfunction();
+            });
+        } else {
+            $('button.btn-close', $myModal).click(function () {
+                $myModal.hide();
             });
         }
     }
