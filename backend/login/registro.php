@@ -22,7 +22,7 @@
 
     $_POST['JGD_PASSWORD'] = md5($_POST['JGD_PASSWORD']);
 
-    $_POST['JGD_FDESDE'] = $_POST['JGD_FACCESO'] = date('Y-m-d G:i:s');
+    $_POST['JGD_FDESDE'] = $_POST['JGD_FACCESO'] = date('Y-m-d'); #date('Y-m-d G:i:s');
 
     $_POST['JGD_TOKEN'] = bin2hex(random_bytes(32));
 
@@ -32,7 +32,6 @@
         $reg = $manJugador->getArray();
         $_SESSION['data']['user']['id'] = $reg['JGD_JUGADOR'];
         $_SESSION['data']['user']['nombre'] = $reg['JGD_NOMBRE'];
-        
         /*$to      = 'cusquiskas@gmail.com';
         $subject = 'Verificación de cuenta de correo';
         $message = 'Pulsa este enlace para activar el centro de mando';
@@ -42,7 +41,7 @@
 
         mail($to, $subject, $message, $headers);
         */
-        echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Registro realizado correctamente', 'id' => $reg['JGD_JUGADOR']]]);
+        echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Registro realizado correctamente', 'id' => $reg['JGD_JUGADOR'], 'nombre' => $reg['JGD_NOMBRE']]]);
         
     } else {
         $reg = $manJugador->getListaErrores();

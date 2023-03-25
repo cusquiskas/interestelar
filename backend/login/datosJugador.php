@@ -4,7 +4,7 @@
 
     header('Content-Type: application/json; charset=utf-8');
 
-    if (!isset($_SESSION['data']['user']['id']) || $_SESSION['data']['user']['id'] != "") {
+    if (!isset($_SESSION['data']['user']['id']) || $_SESSION['data']['user']['id'] == "") {
         die(json_encode(['success' => false, 'root' => [['tipo' => 'Sesion', 'Detalle' => 'Sesión no válida']]]));
     }
 
@@ -16,7 +16,13 @@
 
     if ($manJugador->give(['JGD_JUGADOR'=>$_SESSION['data']['user']['id']]) == 0) {
         $reg = $manJugador->getArray();
+    }
+    
+    if (count($reg) == 1)
         echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => $reg[0]]]);
+    else {
+        unset($_SESSION['data']['user']);
+        echo json_encode(['success' => false, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Usuario no encontrado']]);
     }
 
 ?>

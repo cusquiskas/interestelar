@@ -15,6 +15,7 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Cache::ruta('css/style.css'); ?>"> -->
     <style>
         template { display: inline; }
+        .xx {display: none; }
     </style>
 </head>
 <body>

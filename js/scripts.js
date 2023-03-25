@@ -24,7 +24,7 @@ function iniciarApp() {
 }
 
 function validaErroresCBK(obj) {
-    let msg = "<div class='alert alert-{{tipo}}'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>{{Campo}}</strong> {{Detalle}}.</div>";
+    let msg = "<div class='alert alert-{{tipo}} alert-dismissible fade show' role='alert'><strong>{{Campo}}</strong> {{Detalle}}.<button type='button' class='btn-close' data-bs-dismiss='alert'></button></div>";
     if (typeof obj === "object" && typeof obj.length === "undefined") obj = [obj];
     for (let i = 0; i < obj.length; i++) {
         if (obj[i].type) {
@@ -36,6 +36,9 @@ function validaErroresCBK(obj) {
         if (!obj[i].Detalle) obj[i].Detalle = JSON.stringify(obj[i]);
         if (!obj[i].Campo) obj[i].Campo = "";
         $(".alertBoxMessage").append(msg.reemplazaMostachos(obj[i]));
+        $(".alert").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
+        });
     }
 }
 
@@ -96,4 +99,8 @@ function construirModal(modal) {
     $('.close', $myModal).click(function () {
         $myModal.hide();
     });
+}
+
+function cerrarModal() {
+    $('#myModal').hide();    
 }
