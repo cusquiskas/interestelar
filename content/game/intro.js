@@ -19,6 +19,8 @@ var intro = class {
                     construirModal({title:"Registro", w:600, h:750});
                     break;
                 case 'login':
+                    Moduls.getModalbody().load({ url: 'content/game/login.html', script: true });
+                    construirModal({title:"Login", w:400, h:700});
                     break;
                 case 'no':
                     window.location.href = 'https://duckduckgo.com/?q=granja+de+gallinas&iar=images&iax=images&ia=images';

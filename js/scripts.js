@@ -23,7 +23,7 @@ function iniciarApp() {
     Moduls.getModal().load({ url: 'content/modal.html', script: false });
 }
 
-function validaErroresCBK(obj) {
+function validaErroresCBK(obj, time=4000) {
     let msg = "<div class='alert alert-{{tipo}} alert-dismissible fade show' role='alert'><strong>{{Campo}}</strong> {{Detalle}}.<button type='button' class='btn-close' data-bs-dismiss='alert'></button></div>";
     if (typeof obj === "object" && typeof obj.length === "undefined") obj = [obj];
     for (let i = 0; i < obj.length; i++) {
@@ -36,10 +36,10 @@ function validaErroresCBK(obj) {
         if (!obj[i].Detalle) obj[i].Detalle = JSON.stringify(obj[i]);
         if (!obj[i].Campo) obj[i].Campo = "";
         $(".alertBoxMessage").append(msg.reemplazaMostachos(obj[i]));
-        $(".alert").delay(4000).slideUp(200, function() {
-            $(this).alert('close');
-        });
     }
+    $(".alert").delay(time).slideUp(200, function() {
+        $(this).alert('close');
+    });
 }
 
 // Funcion para construir la modal, recibe un objeto modal con parametros

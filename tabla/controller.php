@@ -128,7 +128,7 @@ class ControladorDinamicoTabla
             if ($valor['Key'] == 'PRI' && $valor['Extra'] == 'auto_increment') {
                 $insertExtraId = "if (\$status == 0) {
                                     \$key = \$link->consulta('select last_insert_id() id', []);
-                                    \$this->".$valor['Field']." = $key[0]['id'];
+                                    \$this->".$valor['Field']." = \$key[0]['id'];
                                 }\n";
             } else {
                 if ($valor['Null'] == 'NO') {
@@ -277,6 +277,7 @@ class ControladorDinamicoTabla
             } else {
                 return 1;
             }
+            
             \$this->setDatos(\$array);
             if (\$insert) {
                 return \$this->insert();

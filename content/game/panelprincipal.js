@@ -17,9 +17,12 @@ var panelprincipal = class {
         if (!s) {
             validaErroresCBK(d.root||d);
             sessionStorage.setItem('id','');
-            top.location.reload();
+            Moduls.getBody().load({ url: 'content/game/intro.html', script: true });
+            $("span[name='nombre']").empty();
         } else {
             sessionStorage.setItem('id',d.root.Detalle.JGD_JUGADOR);
+            sessionStorage.setItem('nombre',d.root.Detalle.JGD_NOMBRE);
+            $("span[name='nombre']").append(d.root.Detalle.JGD_NOMBRE);
         }
     }
 

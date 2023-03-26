@@ -28,6 +28,8 @@
 
     $manJugador = ControladorDinamicoTabla::set('JUGADOR');
 
+    if (!isset($_POST['JGD_JUGADOR']) || $_POST['JGD_JUGADOR'] == '') $_POST['JGD_JUGADOR'] = -1;
+    
     if ($manJugador->save($_POST) == 0) {
         $reg = $manJugador->getArray();
         $_SESSION['data']['user']['id'] = $reg['JGD_JUGADOR'];
@@ -45,7 +47,9 @@
         
     } else {
         $reg = $manJugador->getListaErrores();
-        echo json_encode(['success' => false, 'root' => ['tipo' => 'Respuesta', 'Detalle' => $reg]]);
+        $rag = [];
+        foreach ($reg as $valor) { $rag[] = [$valor['error']]; }
+        echo json_encode(['success' => false, 'root' => ['tipo' => 'Respuesta', 'Detalle' => $rag]]);
     }
 
     unset($manJugador);

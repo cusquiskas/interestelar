@@ -19,7 +19,7 @@
     }
     
     if (count($reg) == 1)
-        echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => $reg[0]]]);
+        echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => ['JGD_JUGADOR' => $reg[0]['JGD_JUGADOR'], 'JGD_NOMBRE' => $reg[0]['JGD_NOMBRE']]]]);
     else {
         unset($_SESSION['data']['user']);
         echo json_encode(['success' => false, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Usuario no encontrado']]);

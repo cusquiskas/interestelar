@@ -1,6 +1,6 @@
-var registro = class {
+var login = class {
     constructor (mod, obj) {
-        console.log('registro.js -> constructor');
+        console.log('login.js -> constructor');
         let modulo = mod;
         let object = obj;
         this.addEventos(modulo);
@@ -10,9 +10,9 @@ var registro = class {
 
     };
 
-    registro (s,d,e) {
+    login (s,d,e) {
         if (s) {
-            validaErroresCBK(d.root.Detalle);
+            validaErroresCBK(d.root, 1000);
             cerrarModal();
             sessionStorage.setItem('id', d.root.id);
             Moduls.getBody().load({ url: 'content/game/panelprincipal.html', script: true });
