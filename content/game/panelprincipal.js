@@ -22,7 +22,9 @@ var panelprincipal = class {
         } else {
             sessionStorage.setItem('id',d.root.Detalle.JGD_JUGADOR);
             sessionStorage.setItem('nombre',d.root.Detalle.JGD_NOMBRE);
-            $("span[name='nombre']").append(d.root.Detalle.JGD_NOMBRE);
+            let headerClass = Moduls.getHeader().getScript();
+            headerClass.setUser(d.root.Detalle.JGD_NOMBRE);
+            headerClass.darkAndLigth();
         }
     }
 

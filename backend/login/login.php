@@ -25,18 +25,29 @@
     $manJugador = ControladorDinamicoTabla::set('JUGADOR');
 
     if ($manJugador->give($_POST) == 0) {
+        #echo var_export($manJugador->getDatos(), true)."\n";
         $reg = $manJugador->getArray();
-        
+        #echo var_export($reg, true)."\n";
         if (count($reg) == 1) {
 
             $_SESSION['data']['user']['id'] = $reg[0]['JGD_JUGADOR'];
             $_SESSION['data']['user']['nombre'] = $reg[0]['JGD_NOMBRE'];
             
             $_POST['JGD_FACCESO'] = date('Y-m-d'); #date('Y-m-d G:i:s');
+            $manJugador->save($_POST);
 
             echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Login realizado correctamente', 'id' => $reg[0]['JGD_JUGADOR'], 'nombre' => $reg[0]['JGD_NOMBRE']]]);
         } else {
+            if ($manJugador->give(["JGD_CORREO" => $_POST["JGD_CORREO"]/*, "JGD_PASSWORD" => null, "JGD_JUGADOR" => null, "JGD_ERRLOGIN" => null*/]) == 0) {
+                #echo var_export($manJugador->getDatos(), true)."\n";
+                $reg = $manJugador->getArray();
+                #echo var_export($reg, true)."\n";
+                if (count($reg) == 1) {
+                    $manJugador->save(["JGD_JUGADOR" => $reg[0]["JGD_JUGADOR"], "JGD_ERRLOGIN" => $reg[0]["JGD_ERRLOGIN"]+1]);
+                }
+            }
             echo json_encode(['success' => false, 'root' => [['tipo' => 'Sesion', 'Detalle' => 'Usuario o contraseña no válido']]]);
+
         }
     } else {
         $reg = $manJugador->getListaErrores();
