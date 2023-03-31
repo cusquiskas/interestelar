@@ -21,7 +21,8 @@
     }
 
     $_POST['JGD_PASSWORD'] = md5($_POST['JGD_PASSWORD']);
-
+    $_POST['JGD_ERRLOGIN'] = 7;
+    $_POST['JGD_ERRLOGIN_signo'] = "<";
     $manJugador = ControladorDinamicoTabla::set('JUGADOR');
 
     if ($manJugador->give($_POST) == 0) {
@@ -33,12 +34,14 @@
             $_SESSION['data']['user']['id'] = $reg[0]['JGD_JUGADOR'];
             $_SESSION['data']['user']['nombre'] = $reg[0]['JGD_NOMBRE'];
             
+            $_POST['JGD_JUGADOR'] = $reg[0]['JGD_JUGADOR'];
             $_POST['JGD_FACCESO'] = date('Y-m-d'); #date('Y-m-d G:i:s');
+            $_POST['JGD_ERRLOGIN'] = 0;
             $manJugador->save($_POST);
-
+            #echo var_export($manJugador->getDatos(), true)."\n";
             echo json_encode(['success' => true, 'root' => ['tipo' => 'Respuesta', 'Detalle' => 'Login realizado correctamente', 'id' => $reg[0]['JGD_JUGADOR'], 'nombre' => $reg[0]['JGD_NOMBRE']]]);
         } else {
-            if ($manJugador->give(["JGD_CORREO" => $_POST["JGD_CORREO"]/*, "JGD_PASSWORD" => null, "JGD_JUGADOR" => null, "JGD_ERRLOGIN" => null*/]) == 0) {
+            if ($manJugador->give(["JGD_CORREO" => $_POST["JGD_CORREO"]]) == 0) {
                 #echo var_export($manJugador->getDatos(), true)."\n";
                 $reg = $manJugador->getArray();
                 #echo var_export($reg, true)."\n";
