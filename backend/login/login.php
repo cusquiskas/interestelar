@@ -23,6 +23,8 @@
     $_POST['JGD_PASSWORD'] = md5($_POST['JGD_PASSWORD']);
     $_POST['JGD_ERRLOGIN'] = 7;
     $_POST['JGD_ERRLOGIN_signo'] = "<";
+    $_POST['JGD_FVALIDA'] = date('Y-m-d');
+    $_POST['JGD_FVALIDA_signo'] = "<=";
     $manJugador = ControladorDinamicoTabla::set('JUGADOR');
 
     if ($manJugador->give($_POST) == 0) {

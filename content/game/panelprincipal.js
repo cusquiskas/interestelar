@@ -14,18 +14,18 @@ var panelprincipal = class {
     };
 
     sesion (s,d,e) {
+        let headerClass = Moduls.getHeader().getScript();
         if (!s) {
-            validaErroresCBK(d.root||d);
+            if (sessionStorage.getItem('id')) validaErroresCBK(d.root||d);
             sessionStorage.setItem('id','');
+            sessionStorage.setItem('nombre','');
             Moduls.getBody().load({ url: 'content/game/intro.html', script: true });
-            $("span[name='nombre']").empty();
         } else {
             sessionStorage.setItem('id',d.root.Detalle.JGD_JUGADOR);
             sessionStorage.setItem('nombre',d.root.Detalle.JGD_NOMBRE);
-            let headerClass = Moduls.getHeader().getScript();
-            headerClass.setUser(d.root.Detalle.JGD_NOMBRE);
             headerClass.darkAndLigth();
         }
+        headerClass.setUser(sessionStorage.getItem('nombre'));
     }
 
 }

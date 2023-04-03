@@ -35,13 +35,7 @@ class ControladorDinamicoTabla
             $cadena .= '$this->'.$valor['Field']."_signo = (array_key_exists('".$valor['Field']."_signo', \$array) ? (string) \$array['".$valor['Field']."_signo'] : '=');\n";
             $cadena .= '$this->'.$valor['Field']."_case  = (array_key_exists('".$valor['Field']."_case',  \$array) ? (string) strtoupper(\$array['".$valor['Field']."_case']) : 'S');\n";
         }
-        /*
-        foreach ($datos as &$valor) {
-            $cadena .= '$this->'.$valor['Field']." = (isset(\$array['".$valor['Field']."']) ? (".$valor['Type2'].") \$array['".$valor['Field']."'] : \$this->".$valor['Field'].");\n";
-            $cadena .= '$this->'.$valor['Field']."_signo = (isset(\$array['".$valor['Field']."_signo']) ? (string) \$array['".$valor['Field']."_signo'] : \$this->".$valor['Field']."_signo);\n";
-            $cadena .= '$this->'.$valor['Field']."_case = (isset(\$array['".$valor['Field']."_case']) ? (string) strtoupper(\$array['".$valor['Field']."_case']) : \$this->".$valor['Field']."_case);\n";
-        }
-        */
+        
         return "private function setDatos(\$array) { $cadena return 0;}\n";
     }
 
